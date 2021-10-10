@@ -7,7 +7,7 @@ const ReviewSchema = new mongoose.Schema({
     rating: {type: Number, required: true},
     reviewText: {type: String, required: true},
     photos: [{
-        type: mongoose.type.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: "Images"
     }]
 },
