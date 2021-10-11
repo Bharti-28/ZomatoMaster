@@ -1,9 +1,10 @@
 //Libraries
+//require('dotenv').config();
 import express from "express";
 import AWS from "aws-sdk";
 import multer from "multer";
 
-//Databse model
+//Database model
 import {ImageModel} from "../../database/allModels";
 
 const Router = express.Router();
@@ -12,34 +13,35 @@ const Router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 
-
 /*
 Route            /
-Des              Uploading given image to S3 bucket, and then saving the file to mongodb
+Des              Uploading given image to S3 bucket , and then saving the file to mongodb
 Params           None
 Access           Public
-Method           GET
+Method           POST
 */
-Router.post("/", upload.single("file"), async (req,res) => {
-    try{
-        const file = req.file;
 
-        //S3 bucket options
-        const bucketOptions = {
-            Bucket: "bhartishapeai123",
-            Key: file.originalname,
-            Body: file.buffer,
-            ContentType: file.mimetype,
-            ACL: "public-read"
-        };
-        
-        const uploadImage = await s3Upload(bucketOptions);
+Router.post("/", upload.single("file") ,async(req,res)=> {
+  try {
+ const file = req.file;
 
-        return res.status(200).json({ uploadImage });
+ //S3 bucket options
+ const bucketOptions = {
+   Bucket: "bhartishapeai123",
+   Key: file.originalname,
+   Body: file.buffer,
+   ContentType: file.mimetype,
+   ACL: "public-read"
+ };
 
-    } catch (error) {
-        return res.status(500).json({error: error.message});
-    }
+
+ const uploadImage = await s3Upload(bucketOptions);
+
+ return res.status(200).json({ uploadImage });
+
+  } catch (error) {
+return res.status(500).json({error: error.message});
+  }
 });
 
 export default Router;

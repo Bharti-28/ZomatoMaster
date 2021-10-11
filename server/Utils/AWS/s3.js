@@ -2,8 +2,8 @@ import AWS from "aws-sdk";
 
 //AWS S3 bucket config
 const s3Bucket = new AWS.S3({
-    accessKeyId: process.env.AWS_S3_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_S3_SECRET_KEY,
+    accessKeyId: "AKIA2AR2RMKJU5P3ODGU",
+    secretAccessKey:"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",
     region: "ap-south-1"
 });
 
@@ -15,3 +15,6 @@ export const s3Upload = (options) => {
         })
     );
 };
+
+// AWS_S3_ACCESS_KEY=AKIA2AR2RMKJU5P3ODGU
+// AWS_S3_SECRET_KEY=
