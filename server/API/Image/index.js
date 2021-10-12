@@ -7,6 +7,9 @@ import multer from "multer";
 //Database model
 import {ImageModel} from "../../database/allModels";
 
+//Utilities
+import {s3Upload} from "../../Utils/AWS/s3";
+
 const Router = express.Router();
 
 //Multer config
