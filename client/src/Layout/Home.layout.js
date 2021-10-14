@@ -2,6 +2,7 @@ import React from "react";
 
 //Components
 import Navbar from "../Components/Navbar";
+import FoodTab from "../Components/FoodTab";
 
 const HomeLayout = (props) => {
   return <>
@@ -10,7 +11,7 @@ const HomeLayout = (props) => {
    
     {props.children}
    </div>
-  
+   <FoodTab />
   </>
 };
 
